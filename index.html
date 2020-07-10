@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+
+<!--
+
+ ██▓     ██████ ▓█████ ▓█████     █    ██
+▓██▒   ▒██    ▒ ▓█   ▀ ▓█   ▀     ██  ▓██▒
+▒██▒   ░ ▓██▄   ▒███   ▒███      ▓██  ▒██░
+░██░     ▒   ██▒▒▓█  ▄ ▒▓█  ▄    ▓▓█  ░██░
+░██░   ▒██████▒▒░▒████▒░▒████▒   ▒▒█████▓
+░▓     ▒ ▒▓▒ ▒ ░░░ ▒░ ░░░ ▒░ ░   ░▒▓▒ ▒ ▒
+ ▒ ░   ░ ░▒  ░ ░ ░ ░  ░ ░ ░  ░   ░░▒░ ░ ░
+ ▒ ░   ░  ░  ░     ░      ░       ░░░ ░ ░
+ ░           ░     ░  ░   ░  ░      ░
+
+-->
+
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Deep Space Nine Bingo/Drinking Game</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script>
+
+    </script>
+    <style>
+    html,body {
+      width:100%;
+      height:100%;
+      text-align:center;
+      background:#333;
+      padding:0;
+      margin:0;
+    }
+      table {
+        box-sizing:border-box;
+        width:70%;
+        height:90%;
+        margin:25px auto;
+        border:1px #333 solid;
+        background:#fff;
+      }
+      td {
+        border-collapse:collapse;
+        width:20%;
+        height:20%;
+        text-align:center;
+        border:1px #333 solid;
+        vertical-align:middle;
+        background-size:cover;
+        background-repeat:no-repeat;
+        cursor:pointer;
+        background-position:left top;
+      }
+
+      @media screen and (max-width : 1000px){
+        table {
+            width:100%;
+            height:100%;
+        }
+      }
+
+      @media screen and (max-width : 320px){
+        html,body { overflow:hidden; }
+        table {
+            width:320px;
+            font-size:0.8em;
+            margin:0;
+            height:50%;
+            border:none;
+            table-layout:fixed;
+        }
+        td {
+            border:1px #333 solid;
+            word-wrap: break-word;
+        }
+
+      }
+    </style>
+  </head>
+  <body>
+
+    <table>
+    <tr>
+        <td id="cell0">&nbsp;</td>
+        <td id="cell5">&nbsp;</td>
+        <td id="cell10">&nbsp;</td>
+        <td id="cell14">&nbsp;</td>
+        <td id="cell19">&nbsp;</td>
+    </tr>
+    <tr>
+        <td id="cell1">&nbsp;</td>
+        <td id="cell6">&nbsp;</td>
+        <td id="cell11">&nbsp;</td>
+        <td id="cell15">&nbsp;</td>
+        <td id="cell20">&nbsp;</td>
+    </tr>
+    <tr>
+        <td id="cell2">&nbsp;</td>
+        <td id="cell7">&nbsp;</td>
+        <td id="free">Free</td>
+        <td id="cell16">&nbsp;</td>
+        <td id="cell21">&nbsp;</td>
+    </tr>
+    <tr>
+        <td id="cell3">&nbsp;</td>
+        <td id="cell8">&nbsp;</td>
+        <td id="cell12">&nbsp;</td>
+        <td id="cell17">&nbsp;</td>
+        <td id="cell22">&nbsp;</td>
+    </tr>
+    <tr>
+        <td id="cell4">&nbsp;</td>
+        <td id="cell9">&nbsp;</td>
+        <td id="cell13">&nbsp;</td>
+        <td id="cell18">&nbsp;</td>
+        <td id="cell23">&nbsp;</td>
+    </tr>
+</table>
+
+<script>
+$(function(){
+
+    var usedArray = new Array(76);
+    var baseArray = new Array(0,0,0,0,0,1,1,1,1,1,2,2,2,2,3,3,3,3,3,4,4,4,4,4);
+    var number = 0;
+    var base = 0;
+    var tropes = new Array(
+        "sisko holds baseball",
+        "sisko scolds somebody",
+        "sisko calls dax old man",
+        "sisko's wife is mentioned",
+        "quark swindles",
+        "quark begs",
+        "quark haggles",
+        "kira reminds us of her past",
+        "kira acts impulsively",
+        "kira is religious",
+        "odo is lonely",
+        "odo catches quark",
+        "odo transforms",
+        "jake and nog hanging out",
+        "jake/nog get in trouble",
+        "dax alludes to past lives",
+        "bashir hits on someone",
+        "bashir saves a life",
+        "rom is secretly smart",
+        "obrien complains",
+        "obrien performs an engineering miracle",
+        "obrien must suffer",
+        "keiko complains",
+        "raktajino is drunk",
+        "kanar is drunk",
+        "dabo is played",
+        "runabout/defiant is flown",
+        "wormhole opens",
+        "prophets speak",
+        "prophet's orb in use",
+        "cardassians attack",
+        "jem'hadar attack",
+        "founders attack",
+        "ketracel white",
+        "a rule of acquisition is named",
+        "morn is at the bar",
+        "first contact with race from gamma quadrant",
+        "a ship docks with ds9",
+        "garak alludes to secrets",
+        "gul dukat is mad",
+        "gul dukat is friendly",
+        "kai winn does something evil",
+        "vic fontaine sings",
+        "leeta's cleavage",
+        "Q shows up",
+        "worf fights/gets mad",
+        "we're on bajor",
+        "we're in the gamma quadrant",
+        "we're in the mirror universe",
+        "we're in the past",
+        "we're on earth",
+        "we're in someone's quarters",
+        "hail acknowledged",
+        "teleporter is used",
+        "replicator is used",
+        "turbolift scene",
+        "holodeck is used",
+        "stardate is mentioned",
+        "earth is mentioned",
+        "reference to another series",
+        "ds9 is attacked",
+        "phaser is fired",
+        "photon torpedos used",
+        "time is travelled",
+        "alien says human like its an insult",
+        "orders are disobeyed",
+        "comm badges don't work",
+        "shields are down",
+        "a diagnostic is run",
+        "a PADD is handed to someone",
+        "a system is offline",
+        "there's a containment field",
+        "someone asks to speak freely",
+        "dress uniforms appear",
+        "station log recorded",
+        "baseball is played"
+    );
+
+    init();
+
+
+
+
+
+    function init(){
+        for(var i = 0; i<24; i++){
+            fillCard(i);
+        }
+    }
+
+    function fillCard(i){
+        base = baseArray[i] * 15;
+        number = base + Math.floor(Math.random()*15)+1;
+
+
+        if(usedArray[number] != true){
+            $('#cell'+i).html(tropes[number]);
+            usedArray[number] = true;
+        }else{
+            fillCard(i);
+        }
+    }
+
+    $('td').click(function(){
+
+        var toggle = this.style;
+        var xhr = $.get("http://api.giphy.com/v1/gifs/random?tag=deep+space+nine&api_key=dc6zaTOxFJmzC");
+        toggle.backgroundColor = toggle.backgroundColor? "":"#333";
+        toggle.color = toggle.color? "":"rgb(255, 255, 255)";
+        if(toggle.color == 'rgb(255, 255, 255)'){
+            xhr.done(function(data) {
+                toggle.backgroundImage = "url("+data.data.image_url+")";
+            });
+        } else {
+            toggle.backgroundImage = "";
+        }
+
+    });
+
+});
+
+  </script>
+  </body>
+</html>
